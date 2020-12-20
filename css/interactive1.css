@@ -1,0 +1,64 @@
+.videocontainer{
+    width: 90%;
+	margin: auto;
+    position: relative;
+    height: 400px;
+    padding-left: 300px;
+}
+.videocontainer .interaction{
+	position: absolute;
+    z-index: 2;
+    margin: auto;
+    margin-top:160px;
+    height: 30%;
+    width: 720px; 
+    left: 427px;
+	background-color: rgba(80, 80, 80, 0.5);
+   
+}
+.videocontainer .label1{
+	position: absolute;
+    z-index: 2;
+    margin: auto;
+    margin-top:190px;
+    left: 40%;
+	background-color: rgba(80, 80, 80, 0.5);
+   
+}
+.videocontainer .finalinteraction{
+	position: absolute;
+    z-index: 2;
+    margin: auto;
+    margin-top:100px;
+    height: 40%;
+    width: 720px;
+    left: 427px;
+	background-color: rgba(80, 80, 80, 0.5);
+   
+}
+video.bkg {
+    background: black
+}
+    p{
+        font-size: 15px;
+        font-family: Helvetica, Arial, "sans-serif";
+        color: #575a5e;
+        line-height: 24px;
+    }
+    a{
+        color: #575a5e;
+    }
+    #video{
+        display: block;
+        width: 720px;
+        height: 400px;
+        margin: 0 auto;
+        position: absolute;
+        z-index:1;
+        left: 25%;
+    }
+q{
+    color: red;
+    margin-top: 50px
+
+}

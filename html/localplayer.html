@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html dir="auto" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph data -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Proyecto Multimedia - ESI"/>
+    
+    <meta property="og:url" content=""/>
+    <title>Proyecto Multimedia - Reproductor de video online</title>
+    <link href="/resources/fav-icon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/merged.min.css?v=41.475" rel="stylesheet" type="text/css" />
+    <link href="/css/custom.css" rel="stylesheet" type="text/css" />
+    <script src="/js/localplayer.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container" style="margin-left: 0px;">
+            <div class="row">
+                <div class="col-sm-8 hidden-xs">
+                    <div class="logo">
+                        <a href="http://127.0.0.1:5500/html/home.html">
+                            <img src="/resources/favicon.ico" alt="" style="width: 40px; padding-bottom: 7px;" />
+                            <a style="color: white;">Home page</a>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; padding-top:100px"; >   
+        <h2> Local video </h2>
+        <div style="padding-bottom: 20px; align-content: center;">
+            <input type="file" id="files" value="" accept="video/*" onchange="playSelected(event)" placeholder="Select your file" style="padding-left: 770px;">
+            <!-- <button id="selectLocal" onclick="selectVideo()"> <img src="/resources/btn-upload.png" style="width: 35px;"></button> -->
+            <!-- <input type="file" id="files" accept="video/*" onchange="playSelected(event)"/> -->
+        </div>
+        
+    </div>
+
+    <div id="container" > 
+        <figure id="video_player">
+            <video controls poster="/resources/poster.png">
+                <source src="/resources/Cyber_end.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                <a id="video1" value="Cyber_end.mp4"><img src="/resources/Cyber.jpg" alt="Cyberpunk" onclick="load('video1')"></a>
+                <a id="video2" value="Prueba Openshot.mp4"><img src="/resources/android-oreo.jpg" alt="Android hero" onclick="load('video2')"></a>
+            </figcaption>
+        </figure>
+    </div>
+
+    <footer>
+        <div style="text-align:center; padding-top:50px"; >     
+            <p allign="center"><span style="text-transform: uppercase; letter-spacing: 0.3em;">Authors</span><br><br>
+                <a href="https://www.linkedin.com/in/jos%C3%A9-calzado-piedrabuena-590966193/"> Jose Calzado Piedrabuena</a> <br>
+                <a href="https://www.linkedin.com/in/raul-valentin/"> Raul Valentin Jorge </a>
+                <br><br>
+                <img src="/resources/logoesi.jpg" alt="ESI logo" width="200" >
+            </p>
+            <br>
+        </div> 
+    </footer>
+</body>
+
+</html>

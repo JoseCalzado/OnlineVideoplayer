@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Interactivo</title>
+    <meta name="description" content="Video Interactivo 1 de José y Raúl" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <style>
+       
+    </style>
+        
+    <script>
+        $('#video').on('loadstart', function (event) {
+            $(this).addClass('bkg');
+            $(this).attr("poster", "loader.gif");
+        });
+        $('#video').on('canplay', function (event) {
+            $(this).removeClass('bkg');
+            $(this).removeAttr("poster");
+        });
+    </script>
+    <script src="/js/interactive.js"></script>
+    <link rel="stylesheet" href="/css/interactive.css">
+    <link href="/resources/fav-icon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/merged.min.css?v=41.475" rel="stylesheet" type="text/css" />
+    <link href="/css/custom.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="header">
+        <div class="container" style="margin-left: 0px;">
+            <div class="row">
+                <div class="col-sm-8 hidden-xs">
+                    <div class="logo">
+                        <a href="http://127.0.0.1:5500/html/home.html">
+                            <img src="/resources/favicon.ico" alt="" style="width: 40px; padding-bottom: 7px;" />
+                            <a style="color: white;">Home page</a>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div style="text-align:center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+	    <br>
+        <div class="videocontainer">
+            <div class="interaction" id="interaction1" hidden>
+                <br>
+                <br>
+                <q>¿De qué se alimentan las gaviotas?</q>
+                <br>
+                <br>
+                <input onclick="checkFirst(value)" type="button" value="Peces" id="Peces"></input>
+                <input onclick="checkFirst(value)" type="button" value="Algas marinas" id="Algasmarinas"></input>
+                <input onclick="checkFirst(value)" type="button" value="Hamburguesas" id="Hamburguesas"></input>
+                <input onclick="checkFirst(value)" type="button" value="Cocido" id="Cocido"></input>
+                <br>
+                <q id="fail1" hidden>Prueba de nuevo</q>
+            </div>
+            <div class="interaction" id="interaction2" hidden>
+                <br>
+                <br>
+                <q>¿Cuál es el animal marino más grande?</q>
+                <br>
+                <br>
+                <input onclick="checkSecond(value)" type="button" value="Bob Esponja" id="Bobesponja"></input>
+                <input onclick="checkSecond(value)" type="button" value="Tiburón martillo" id="Tiburonmartillo"></input>
+                <input onclick="checkSecond(value)" type="button" value="Ballena azul" id="Ballena azul"></input>
+                <input onclick="checkSecond(value)" type="button" value="Megalodón" id="Megalodón"></input>
+                <br>
+                <q id="fail2" hidden>Prueba de nuevo</q>
+            </div>
+            <label hidden id="label1" class="label1"></label>
+            <div class="finalinteraction" id="interaction3" hidden>
+                <br>
+                <br>
+                <q>¿Quieres ver otro video interactivo?</q>
+                <br>
+                <a href="interactive1.html"><img src="/resources/buenosi.jpg"></a>
+                <input onclick="reiniciarVideo()" type="button" value="Reiniciar video" id="Reinciarvideo"></input>
+            </div>
+            <video id="video" preload="auto" poster="poster.png" controls muted loop playsinline>
+			    <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+          	    Your browser does not support HTML5 video.
+            </video>
+        </div>
+		
+    </div>
+    <script>
+        var video = document.getElementById('video');
+        video.play();
+        var interaction1= document.getElementById('interaction1');
+        var interaction2 = document.getElementById('interaction2');
+        var lbl1 = document.getElementById('label1');
+        var interaction3 = document.getElementById('interaction3');
+        var fail1 = document.getElementById('fail1');
+        var fail2 = document.getElementById('fail2');
+        var interaction1Time = 4;
+        var interaction2Time = 20;
+        var showAnswersTime = 32;
+        var interaction3Time = 42;
+        var trueAnswer1 = false;
+        var trueAnswer2 = false;
+        var trueAnswers = 0;
+        video.ontimeupdate = function() {tillTheEnd()};
+        
+
+
+        function tillTheEnd(){
+            if(!trueAnswer1 && Math.trunc(video.currentTime) == interaction1Time){
+                video.currentTime = interaction1Time-1;
+                interaction1.hidden = false;
+                video.controls=false;
+            }
+            else if(!trueAnswer2 && Math.trunc(video.currentTime) == interaction2Time){
+                video.currentTime=interaction2Time-1;
+                interaction2.hidden=false;
+                video.controls=false;
+            }
+            else if (Math.trunc(video.currentTime) == showAnswersTime ){
+                if(trueAnswers==0){
+                    lbl1.style.color="red";
+                }
+                else if(trueAnswers==1){
+                    lbl1.style.color="yellow";
+                }
+                else{
+                    lbl1.style.color ="green";
+                }
+                lbl1.textContent = 'Tu puntuación es de '+ trueAnswers + ' sobre 2';
+                lbl1.hidden=false;
+            }
+            else if(Math.trunc(video.currentTime) == interaction3Time){
+                lbl1.hidden=true;
+                video.currentTime=interaction3Time-1;
+                interaction3.hidden=false;
+                video.controls=false;
+            }
+        }
+
+        function checkFirst(value){
+            if(value == 'Peces'){
+                console.log('true');
+                interaction1.hidden=true;
+                trueAnswer1 = true;
+                fail1.hidden = true;
+                trueAnswers+=1;
+                video.controls=true;
+            }
+            
+            else{
+                fail1.hidden = false;
+            }
+        }
+        function checkSecond(value){
+            if(value == 'Ballena azul'){
+                console.log('true');
+                interaction2.hidden=true;
+                trueAnswer2 = true;
+                fail2.hidden = true;
+                trueAnswers+=1;
+                video.controls=true;
+            }
+            else{
+                fail2.hidden = false;
+            }
+        }
+        function reiniciarVideo(){
+            trueAnswer1 = false;
+            trueAnswer2 = false;
+            interaction3.hidden=true;
+            trueAnswers=0;
+            video.currentTime = 0;
+            video.controls = true;
+            video.play();
+            
+        }
+    </script>
+    <footer>
+        <div style="text-align:center; padding-top:280px"; >     
+            <p allign="center"><span style="text-transform: uppercase; letter-spacing: 0.3em;">Authors</span><br><br>
+                <a href="https://www.linkedin.com/in/jos%C3%A9-calzado-piedrabuena-590966193/"> Jose Calzado Piedrabuena</a> <br>
+                <a href="https://www.linkedin.com/in/raul-valentin/"> Raul Valentin Jorge </a>
+                <br><br>
+                <img src="/resources/logoesi.jpg" alt="ESI logo" width="200" >
+            </p>
+            <br>
+        </div> 
+    </footer>
+</body>
+
+</html>
